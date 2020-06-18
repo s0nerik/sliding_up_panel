@@ -6,10 +6,10 @@ Copyright: © 2020, Akshath Jain. All rights reserved.
 Licensing: More information can be found here: https://github.com/akshathjain/sliding_up_panel/blob/master/LICENSE
 */
 
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 
 enum SlideDirection{
@@ -232,7 +232,17 @@ class _SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvid
       if(widget.onPanelOpened != null && _ac.value == 1.0) widget.onPanelOpened();
 
       if(widget.onPanelClosed != null && _ac.value == 0.0) widget.onPanelClosed();
+
+      if(_isPanelOpen){
+        _scrollingEnabled = true;
+      }else if(_isPanelClosed){
+        _scrollingEnabled = false;
+      }
     });
+
+    if (_isPanelOpen) {
+      _scrollingEnabled = true;
+    }
 
     // prevent the panel content from being scrolled only if the widget is
     // draggable and panel scrolling is enabled
