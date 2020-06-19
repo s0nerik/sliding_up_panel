@@ -233,7 +233,7 @@ class _SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvid
 
       if(widget.onPanelClosed != null && _ac.value == 0.0) widget.onPanelClosed();
 
-      if(_isPanelOpen){
+      if(_isPanelOpen && _sc.hasClients && _sc.offset <= 0){
         _scrollingEnabled = true;
       }else if(_isPanelClosed){
         _scrollingEnabled = false;
